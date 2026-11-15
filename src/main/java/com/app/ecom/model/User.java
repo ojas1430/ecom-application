@@ -1,5 +1,6 @@
 package com.app.ecom.model;
 
+import com.app.ecom.UserRole;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -8,7 +9,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@Entity
+@Entity(name = "user_table")
 @NoArgsConstructor
 public class User {
     @Id
@@ -18,5 +19,5 @@ public class User {
     private String lastName;
     private String email;
     private String phone;
-
+    private UserRole userRole = UserRole.CUSTOMER;
 }
