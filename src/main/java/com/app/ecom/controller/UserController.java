@@ -11,7 +11,6 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 public class UserController {
-    private Long nextId = 1L;
     private final EcomApplication.UserService userService;
 
     @GetMapping("/api/users")
@@ -28,14 +27,12 @@ public class UserController {
 
     @PostMapping("/api/users")
     public ResponseEntity<String> createUser(@RequestBody User user){
-        user.setId(nextId++);
         userService.addUser(user);
         return ResponseEntity.ok("User added successfully");
     }
 
     @PutMapping("/api/users/{id}")
     public ResponseEntity<String> updateUser(@PathVariable  Long id,@RequestBody User updatedUser){
-        updatedUser.setId(nextId++);
         userService.addUser(updatedUser);
         return ResponseEntity.ok("User added successfully");
     }
