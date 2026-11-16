@@ -1,7 +1,9 @@
 package com.app.ecom.dto;
 
 import com.app.ecom.model.UserRole;
+import lombok.Data;
 
+@Data
 public class userResponse {
     private String id;
     private String firstName;
