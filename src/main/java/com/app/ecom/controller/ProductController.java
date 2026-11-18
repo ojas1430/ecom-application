@@ -1,0 +1,38 @@
+package com.app.ecom.controller;
+
+import com.app.ecom.dto.ProductRequest;
+import com.app.ecom.dto.ProductResponse;
+import com.app.ecom.model.Product;
+import com.app.ecom.service.ProductService;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+@RequiredArgsConstructor
+@RequestMapping("/api/products")
+public class ProductController {
+
+    private final ProductService productService;
+
+    @PostMapping
+    public ResponseEntity<ProductResponse> createProduct(@RequestBody ProductRequest productRequest){
+        return new ResponseEntity<ProductResponse>(productService.createProduct(productRequest), HttpStatus.CREATED);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<ProductResponse> updateProduct(
+            @PathVariable Long id,
+            @RequestBody ProductRequest productRequest) {
+
+        ProductResponse response =
+                productService.updateProduct(id, productRequest);
+
+        return ResponseEntity.ok(response);
+    }
+}
